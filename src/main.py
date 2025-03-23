@@ -1,43 +1,6 @@
-class InputParser:
-    '''Parse the input file for known cells'''
 
-    def __init__(self, input_file):
-        self.input_file = input_file
-        pass
 
-    def read_input(self):
-        '''Read input file and parse it'''
-        pass
-        # return newly_known_cells
-
-class Plotter:
-    '''Plot current board'''
-
-    def __init__(self, board):
-        self.board = board
-        pass
-
-    def plot_full_board(self):
-        '''Plot current state of the full board'''
-        pass
-
-    def highlight_row(self):
-        '''Highlight a certain row of the board'''
-        pass
-
-    def highlight_column(self):
-        '''Highlight a certain column of the board'''
-        pass
-
-    def highlight_block(self):
-        '''Highlight a certain block of the board'''
-        pass
-
-    def highlight_cell(self):
-        '''Highlight a certain cell on the board'''
-        pass
-
-class Board:
+class BoardStateUpdater:
     '''Calculates board states'''
 
     def __init__(self):
@@ -82,18 +45,21 @@ class Board:
         pass
 
 
-
-
-
+if __name__ == '__main__':
+    pass
 # input board
+    # instantiate inputParser
+    # run reader method
 
 # Fill cells with numbers
-
-# Begin cycle:
-# - Eliminate invalid numbers in cells based on previously filled numbers
-#       - Eliminate rows, columns, block of the known number 
-# - Calc known cells -> give back a list of them
-#       - Check rows, columns, blocks
-#       - If a cell is known, replot board with highlights
-# - Repeat
-# 
+    # instantiate board state updater
+        # run 'while' cycle until board is filled using class methods
+        # Begin cycle:
+        # - Eliminate invalid numbers in cells based on previously filled numbers
+        #       - Eliminate rows, columns, block of the known number 
+        # - Calc known cells -> give back a list of them
+        #       - Check rows, columns, blocks
+        #       - If a cell is known, replot board with highlights
+        # - Repeat
+        # 
+    
