@@ -31,11 +31,11 @@ class Cell:
                           3: [6,7,8],
                           }    
 
-        for num_list in block_valuemap.values():
+        for idx, num_list in block_valuemap.items():
             if self.pos_r in num_list:
-                block_r = num_list
+                block_r = idx
             if self.pos_c in num_list:
-                block_c = num_list
+                block_c = idx
 
         return (block_r, block_c)
     
@@ -65,7 +65,7 @@ class BoardStateUpdater:
                 if num.isnumeric():
                     for cell in self.all_cells:
                         if cell.pos_r == r_idx and cell.pos_c == c_idx:
-                            cell.fix_value(num)
+                            cell.fix_value(int(num))
                             known_cells_list.append(cell)        
 
         return known_cells_list
@@ -148,9 +148,6 @@ class BoardStateUpdater:
         return board_state_to_print
 
 
-    
-
-
 if __name__ == '__main__':
     
     from pprint import pprint
@@ -160,13 +157,13 @@ if __name__ == '__main__':
 
     board_list = [
         ['5', '4', ' ', ' ', ' ', ' ', ' ', ' ', ' '], 
-        [' ', ' ', ' ', '1', ' ', ' ', ' ', ' ', ' '], 
+        [' ', ' ', ' ', '1', '4', ' ', ' ', ' ', ' '], 
         [' ', ' ', ' ', ' ', ' ', ' ', '1', ' ', ' '], 
         [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '], 
         [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '], 
         [' ', ' ', ' ', ' ', ' ', '1', ' ', ' ', ' '], 
         [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '], 
-        [' ', ' ', ' ', ' ', ' ', ' ', ' ', '2', ' '], 
+        [' ', ' ', ' ', ' ', ' ', ' ', ' ', '2', '4'], 
         [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '1'],
     ]
     
