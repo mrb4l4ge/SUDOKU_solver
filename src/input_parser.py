@@ -1,11 +1,11 @@
 class InputParser:
-    '''Parse the input file for known cells'''
+    """Parse the input file for known cells"""
 
     def __init__(self):
         self.init_board_state = []
 
     def read_input(self, input_file):
-        '''Read input file and parse it'''
+        """Read input file and parse it"""
         
         with open(input_file, 'r') as inputfile:
             for line in inputfile.readlines():

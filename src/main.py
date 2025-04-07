@@ -1,6 +1,7 @@
 
 from input_parser import InputParser
 from plotter import Plotter
+from solver import Solver
 
 
 

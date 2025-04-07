@@ -1,8 +1,8 @@
 class Plotter:
-    '''Plot current board'''
+    """Plot current board"""
 
     def plot_board(self, board_list):
-        '''Plot current state of the full board'''
+        """Plot current state of the full board"""
 
         print('  === === ===  === === ===  === === ===  ')
 
