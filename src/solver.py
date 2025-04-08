@@ -102,7 +102,7 @@ class BoardStateUpdater:
 
         return newly_known_cell_list 
 
-    def new_board_state_calculator(self, currently_known_cell_list):
+    def calc_board_state(self, currently_known_cell_list):
         """Modify other cell paramters based on newly known cells, and return with a list of brand new known cells"""
 
         for known_cell in currently_known_cell_list:
@@ -136,7 +136,7 @@ class BoardStateUpdater:
         if ctr == 1:
             marked_cell.fix_value(num)
 
-    def board_state_provider(self, current_board_state):
+    def provide_board_state(self, current_board_state):
         """Transform the current board state cell list to a data structure for the plotter"""
         
         board_state_to_print = [[' ' for row in range(9)] for col in range(9)]
@@ -153,7 +153,7 @@ if __name__ == '__main__':
     from pprint import pprint
 
     board = Board()
-    updater = BoardStateUpdater(board)
+    board_updater = BoardStateUpdater(board)
 
     board_list = [
         ['5', '4', ' ', ' ', ' ', ' ', ' ', ' ', ' '], 
@@ -167,14 +167,14 @@ if __name__ == '__main__':
         [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '1'],
     ]
     
-    known_cells = updater.init_board_state(board_list)
-    pprint(known_cells)
+    new_known_cells = board_updater.init_board_state(board_list)
+    pprint(new_known_cells)
 
-    updater.new_board_state_calculator(known_cells)
-    new_known_cell_list = updater.create_newly_fixed_cell_list(known_cells)
-    pprint(new_known_cell_list)
+    board_updater.calc_board_state(new_known_cells)
+    upd_new_known_cells = board_updater.create_newly_fixed_cell_list(new_known_cells)
+    pprint(upd_new_known_cells)
 
-    new_board_state = updater.board_state_provider(board)
+    new_board_state = board_updater.provide_board_state(board)
     pprint(new_board_state)
 
     
