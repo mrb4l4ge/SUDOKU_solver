@@ -2,3 +2,4 @@ quickcheck.ipynb
 input_board.txt
 
 /pycache/*
+/info/*

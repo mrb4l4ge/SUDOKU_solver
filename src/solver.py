@@ -13,6 +13,31 @@ class Board:
                 all_cells.append(Cell(row,col))
 
         return all_cells
+    
+    def init_board_state(self, initial_board_state):   
+        """Generate list of known cells based on initial board state"""
+
+        known_cells_list = []
+        for r_idx, row in enumerate(initial_board_state):
+            for c_idx, num in enumerate(row):
+                if num.isnumeric():
+                    for cell in self.all_cells:
+                        if cell.pos_r == r_idx and cell.pos_c == c_idx:
+                            cell.fix_value(int(num))
+                            known_cells_list.append(cell)        
+
+        return known_cells_list
+
+    def provide_board_state(self, current_board_state):
+        """Transform the current board state cell list to a data structure for the plotter"""
+        
+        board_state_to_print = [[' ' for row in range(9)] for col in range(9)]
+
+        for cell in current_board_state.all_cells:
+            if len(cell.num_list) == 1:
+                board_state_to_print[cell.pos_r][cell.pos_c] = f'{cell.num_list[0]}'
+        
+        return board_state_to_print
 
 class Cell:
     """Represent one cell in the board"""
@@ -56,19 +81,19 @@ class BoardStateUpdater:
     def __init__(self, board):
         self.all_cells = board.all_cells
     
-    def init_board_state(self, initial_board_state):
-        """Generate list of known cells based on initial board state"""
+    # def init_board_state(self, initial_board_state):   # to board class
+    #     """Generate list of known cells based on initial board state"""
 
-        known_cells_list = []
-        for r_idx, row in enumerate(initial_board_state):
-            for c_idx, num in enumerate(row):
-                if num.isnumeric():
-                    for cell in self.all_cells:
-                        if cell.pos_r == r_idx and cell.pos_c == c_idx:
-                            cell.fix_value(int(num))
-                            known_cells_list.append(cell)        
+    #     known_cells_list = []
+    #     for r_idx, row in enumerate(initial_board_state):
+    #         for c_idx, num in enumerate(row):
+    #             if num.isnumeric():
+    #                 for cell in self.all_cells:
+    #                     if cell.pos_r == r_idx and cell.pos_c == c_idx:
+    #                         cell.fix_value(int(num))
+    #                         known_cells_list.append(cell)        
 
-        return known_cells_list
+    #     return known_cells_list
 
     def remove_num_by_known_cell(self, known_cell, all_cells):
         """Based on known cell value remove number from corresponding row/column/block cells"""
@@ -136,16 +161,16 @@ class BoardStateUpdater:
         if ctr == 1:
             marked_cell.fix_value(num)
 
-    def provide_board_state(self, current_board_state):
-        """Transform the current board state cell list to a data structure for the plotter"""
+    # def provide_board_state(self, current_board_state):
+    #     """Transform the current board state cell list to a data structure for the plotter"""
         
-        board_state_to_print = [[' ' for row in range(9)] for col in range(9)]
+    #     board_state_to_print = [[' ' for row in range(9)] for col in range(9)]
 
-        for cell in current_board_state.all_cells:
-            if len(cell.num_list) == 1:
-                board_state_to_print[cell.pos_r][cell.pos_c] = f'{cell.num_list[0]}'
+    #     for cell in current_board_state.all_cells:
+    #         if len(cell.num_list) == 1:
+    #             board_state_to_print[cell.pos_r][cell.pos_c] = f'{cell.num_list[0]}'
         
-        return board_state_to_print
+    #     return board_state_to_print
 
 
 if __name__ == '__main__':
