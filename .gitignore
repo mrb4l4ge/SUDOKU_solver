@@ -1,5 +1,5 @@
 quickcheck.ipynb
 input_board.txt
 
-/pycache/*
+/src/__pycache__/*
 /info/*

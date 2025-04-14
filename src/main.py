@@ -29,11 +29,11 @@ if __name__ == '__main__':
         
         board_updater.calc_board_state(new_known_cells)
         upd_new_known_cells = board_updater.create_newly_fixed_cell_list(new_known_cells)
-        board_state = board.provide_board_state(board)  
-        plotter.plot_board(board_state)
+        curr_board_state = board.provide_board_state(board)  
+        plotter.plot_board(curr_board_state)
         new_known_cells = upd_new_known_cells
 
-        if board_filled(board_state):
+        if board_filled(curr_board_state):
             break
         
         
