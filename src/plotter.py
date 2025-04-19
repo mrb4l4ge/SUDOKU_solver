@@ -13,6 +13,8 @@ class Plotter:
             else:
                print('  --- --- ---  --- --- ---  --- --- ---  ')
         
+        input("Press ENTER to continue...")
+        
 if __name__=='__main__':
 
     board = [
