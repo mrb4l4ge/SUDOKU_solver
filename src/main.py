@@ -12,12 +12,22 @@ Please, read the README file for further instructions.
 Press 'y' key to continue or else to abort...
 """
 
-def board_filled(board_state):
+UNSOLVED_TEXT = """
+Sorry, but I can not solve this SUDOKU puzzle, it is beyond my capabilities. I try to be smarter with time.
+"""
+
+SOLVED_TEXT = """
+This is my solution. Thanks for the puzzle. Cheers!
+"""
+
+def board_filled(board):
     """Check if board is completely filled"""
 
     filled_board = True
-    for rows in board_state:
-        if ' ' in rows:
+    for cell in board.all_cells:
+        if len(cell.num_list) == 1:
+            continue
+        else:
             filled_board = False
             break
     return filled_board
@@ -37,16 +47,22 @@ if __name__ == '__main__':
 
         new_known_cells = board.init_board_state(init_board)
 
-        while True:
+        while not board_filled(board):
+
+            if new_known_cells == []:
+                print(UNSOLVED_TEXT)
+                break
             
             board_updater.calc_board_state(new_known_cells)
             upd_new_known_cells = board_updater.create_newly_fixed_cell_list(new_known_cells)
             curr_board_state = board.provide_board_state(board)  
             plotter.plot_board(curr_board_state)
+
             new_known_cells = upd_new_known_cells
 
-            if board_filled(curr_board_state):
-                break
+        if board_filled(board):
+            print(SOLVED_TEXT)    
+            
         
         
         
